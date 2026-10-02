@@ -1,0 +1,6 @@
+{
+  "name": "Dakshya Shiksha Portal",
+  "description": "Comprehensive educational study materials, NCERT books, question papers, video lessons, and interactive quizzes for Classes 1–10 and Olympiad exams.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

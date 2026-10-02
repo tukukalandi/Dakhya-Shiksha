@@ -1,0 +1,148 @@
+{
+  "entities": {
+    "StudyMaterial": {
+      "title": "Study Material",
+      "description": "Educational study material document or book chapter",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "title": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "classLevel": { "type": "string", "maxLength": 50 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "examType": { "type": "string", "maxLength": 100 },
+        "examName": { "type": "string", "maxLength": 150 },
+        "materialType": { "type": "string", "maxLength": 100 },
+        "academicYear": { "type": "string", "maxLength": 20 },
+        "language": { "type": "string", "maxLength": 50 },
+        "fileName": { "type": "string", "maxLength": 255 },
+        "googleDriveUrl": { "type": "string", "maxLength": 1000 },
+        "googleDriveFileId": { "type": "string", "maxLength": 200 },
+        "thumbnailUrl": { "type": "string", "maxLength": 1000 },
+        "uploadedBy": { "type": "string", "maxLength": 150 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "isPublished": { "type": "boolean" },
+        "downloadCount": { "type": "number" },
+        "viewCount": { "type": "number" },
+        "tags": { "type": "array" },
+        "isDemo": { "type": "boolean" }
+      },
+      "required": ["title", "classLevel", "subject", "materialType", "isPublished"]
+    },
+    "Video": {
+      "title": "Educational Video",
+      "description": "Video lesson record for class or competitive exam",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "categoryType": { "type": "string", "maxLength": 50 },
+        "classOrExam": { "type": "string", "maxLength": 100 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "chapter": { "type": "string", "maxLength": 150 },
+        "title": { "type": "string", "maxLength": 200 },
+        "videoUrl": { "type": "string", "maxLength": 1000 },
+        "thumbnailUrl": { "type": "string", "maxLength": 1000 },
+        "duration": { "type": "string", "maxLength": 50 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "status": { "type": "string", "maxLength": 50 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "uploadedBy": { "type": "string", "maxLength": 150 },
+        "isDemo": { "type": "boolean" }
+      },
+      "required": ["categoryType", "classOrExam", "subject", "chapter", "title", "videoUrl"]
+    },
+    "Quiz": {
+      "title": "Interactive HTML Quiz",
+      "description": "Self-contained interactive HTML quiz rendered in iframe",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string", "maxLength": 200 },
+        "classLevel": { "type": "string", "maxLength": 50 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "chapter": { "type": "string", "maxLength": 150 },
+        "topic": { "type": "string", "maxLength": 150 },
+        "htmlContent": { "type": "string" },
+        "isPublished": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "uploadedBy": { "type": "string", "maxLength": 150 },
+        "isDemo": { "type": "boolean" }
+      },
+      "required": ["title", "classLevel", "subject", "htmlContent"]
+    },
+    "AdminUser": {
+      "title": "Administrator",
+      "description": "Authorized admin profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "maxLength": 200 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "isActive": { "type": "boolean" },
+        "role": { "type": "string", "maxLength": 50 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["email", "isActive", "role"]
+    },
+    "ConfigItem": {
+      "title": "Configuration Item",
+      "description": "Metadata for classes, subjects, exams, material types, etc.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "code": { "type": "string", "maxLength": 100 },
+        "order": { "type": "number" },
+        "classLevel": { "type": "string", "maxLength": 50 },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["name"]
+    }
+  },
+  "firestore": {
+    "/studyMaterials/{materialId}": {
+      "schema": "StudyMaterial",
+      "description": "Collection of study materials and NCERT books"
+    },
+    "/videos/{videoId}": {
+      "schema": "Video",
+      "description": "Collection of educational videos"
+    },
+    "/quizzes/{quizId}": {
+      "schema": "Quiz",
+      "description": "Collection of interactive HTML quizzes"
+    },
+    "/admins/{adminId}": {
+      "schema": "AdminUser",
+      "description": "Collection of system administrators"
+    },
+    "/classes/{classId}": {
+      "schema": "ConfigItem",
+      "description": "Configurable classes 1-10"
+    },
+    "/subjects/{subjectId}": {
+      "schema": "ConfigItem",
+      "description": "Configurable subjects"
+    },
+    "/materialTypes/{typeId}": {
+      "schema": "ConfigItem",
+      "description": "Configurable material types"
+    },
+    "/exams/{examId}": {
+      "schema": "ConfigItem",
+      "description": "Configurable exam types"
+    },
+    "/olympiads/{olympiadId}": {
+      "schema": "ConfigItem",
+      "description": "Configurable Olympiad subjects/exams"
+    },
+    "/settings/{settingId}": {
+      "schema": "ConfigItem",
+      "description": "Global website configuration"
+    }
+  }
+}

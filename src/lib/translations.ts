@@ -1,0 +1,406 @@
+export const translations = {
+  en: {
+    // Brand & General
+    brandName: "Dakshya Shiksha",
+    brandSubtitle: "Educational Study & Learning Portal",
+    tagline: "Study Smarter. Learn Better. Succeed Together.",
+    allRightsReserved: "All Rights Reserved.",
+    
+    // Top Bar
+    dateToday: "Today",
+    language: "Language",
+    theme: "Theme",
+    lightMode: "Light",
+    darkMode: "Dark",
+    
+    // Navigation
+    home: "Home",
+    classes: "Classes",
+    studyMaterials: "Study Materials",
+    videoCorner: "Video Corner",
+    quiz: "Quiz",
+    olympiad: "Olympiad",
+    subjects: "Subjects",
+    about: "About",
+    contact: "Contact",
+    adminLogin: "Admin Login",
+    adminDashboard: "Admin Portal",
+    returnToWebsite: "Return to Website",
+    logout: "Logout",
+    
+    // Hero
+    heroTitle1: "Study Smarter. Learn Better. Succeed Together.",
+    heroSubtitle1: "Access curated NCERT books, chapter solutions, question papers, and interactive learning tools.",
+    heroTitle2: "Complete Study Materials for Classes 1–10",
+    heroSubtitle2: "Structured curriculum-aligned notes, model papers, practice sheets, and video lessons.",
+    heroTitle3: "Prepare Better for School & Olympiad Examinations",
+    heroSubtitle3: "Excel in competitive exams and school assessments with comprehensive resources.",
+    searchPlaceholder: "Search materials by title, class, subject, topic...",
+    browseMaterials: "Browse Materials",
+    exploreClasses: "Explore Classes",
+    
+    // Classes
+    studyMaterialsByClass: "Study Materials by Class",
+    classesSubtitle: "Select your class to explore subjects, books, and practice papers",
+    class: "Class",
+    materialsCount: "materials",
+    explore: "Explore",
+    back: "Back",
+    
+    // Subjects
+    selectSubject: "Select Subject",
+    allSubjects: "All Subjects",
+    hindi: "Hindi",
+    english: "English",
+    math: "Math",
+    twau: "TWAU",
+    mathematics: "Mathematics",
+    science: "Science",
+    odia: "Odia",
+    socialScience: "Social Science",
+    computer: "Computer",
+    generalKnowledge: "General Knowledge",
+    reasoning: "Reasoning",
+    physics: "Physics",
+    chemistry: "Chemistry",
+    biology: "Biology",
+    other: "Other",
+    
+    // Material Types
+    selectMaterialType: "Select Material Type",
+    ncertBook: "NCERT Book",
+    studyNotes: "Study Notes",
+    chapterNotes: "Chapter Notes",
+    questionPapers: "Question Papers",
+    previousYearPapers: "Previous Year Papers",
+    modelPapers: "Model Papers",
+    practicePapers: "Practice Papers",
+    samplePapers: "Sample Papers",
+    mockTests: "Mock Tests",
+    worksheets: "Worksheets",
+    answerKeys: "Answer Keys",
+    solutions: "Solutions",
+    revisionNotes: "Revision Notes",
+    importantQuestions: "Important Questions",
+    syllabus: "Syllabus",
+    
+    // Material Files & Details
+    viewDownload: "VIEW / DOWNLOAD MATERIAL",
+    viewOnline: "View in Google Drive",
+    downloads: "Downloads",
+    views: "Views",
+    academicYear: "Academic Year",
+    examType: "Exam Type",
+    chapterNo: "Chapter No.",
+    chapterName: "Chapter Name",
+    examName: "Exam Name",
+    publishedDate: "Published Date",
+    fileDetails: "Material Details",
+    noMaterialsFound: "No study materials found for your selected filters.",
+    materialUnavailable: "This material is currently unavailable.",
+    
+    // Video Corner
+    videoCornerTitle: "Educational Video Corner",
+    videoCornerSubtitle: "Interactive video lectures, concept breakdowns, and problem solving",
+    competitiveExams: "Competitive Exams",
+    olympiadExams: "Olympiad Exams",
+    chapters: "Chapters",
+    videos: "Videos",
+    watchVideo: "Watch Video",
+    previousVideo: "Previous Video",
+    nextVideo: "Next Video",
+    backToChapter: "Back to Chapter",
+    relatedVideos: "Related Videos",
+    noVideosFound: "No videos available yet.",
+    
+    // Quizzes
+    interactiveQuizzes: "Interactive Quizzes",
+    quizzesSubtitle: "Test your knowledge and practice with chapter-wise assessments",
+    startQuiz: "Start Quiz",
+    noQuizzesFound: "No quizzes found.",
+    topic: "Topic",
+    
+    // Olympiad
+    olympiadTitle: "Olympiad Examination Preparation",
+    olympiadSubtitle: "Mathematics, Science, English, Cyber & Reasoning Olympiad resources",
+    
+    // Common
+    loading: "Loading...",
+    filterBy: "Filter by",
+    search: "Search",
+    resetFilters: "Reset Filters",
+    retry: "Retry",
+    totalMaterials: "Total Materials",
+    footerAboutText: "Dakshya Shiksha is a dedicated digital learning initiative providing free, open, and high-quality educational resources, NCERT textbooks, model tests, and video courses for students across India."
+  },
+  
+  hi: {
+    // Brand & General
+    brandName: "दक्ष्य शिक्षा",
+    brandSubtitle: "शैक्षिक अध्ययन एवं शिक्षण पोर्टल",
+    tagline: "समझदारी से पढ़ें। बेहतर सीखें। साथ मिलकर आगे बढ़ें।",
+    allRightsReserved: "सर्वाधिकार सुरक्षित।",
+    
+    // Top Bar
+    dateToday: "आज",
+    language: "भाषा",
+    theme: "थीम",
+    lightMode: "लाइट",
+    darkMode: "डार्क",
+    
+    // Navigation
+    home: "होम",
+    classes: "कक्षाएं",
+    studyMaterials: "अध्ययन सामग्री",
+    videoCorner: "वीडियो कॉर्नर",
+    quiz: "प्रश्नोत्तरी (क्विज़)",
+    olympiad: "ओलम्पियाड",
+    subjects: "विषय",
+    about: "हमारे बारे में",
+    contact: "संपर्क करें",
+    adminLogin: "एडमिन लॉगिन",
+    adminDashboard: "एडमिन पोर्टल",
+    returnToWebsite: "वेबसाइट पर वापस जाएं",
+    logout: "लॉगआउट",
+    
+    // Hero
+    heroTitle1: "समझदारी से पढ़ें। बेहतर सीखें। साथ मिलकर आगे बढ़ें।",
+    heroSubtitle1: "एनसीईआरटी पुस्तकें, अध्याय समाधान, प्रश्न पत्र और इंटरैक्टिव शिक्षण संसाधन प्राप्त करें।",
+    heroTitle2: "कक्षा 1 से 10 के लिए संपूर्ण अध्ययन सामग्री",
+    heroSubtitle2: "पाठ्यक्रम-संरेखित नोट्स, मॉडल पेपर्स, अभ्यास पत्र और वीडियो पाठ।",
+    heroTitle3: "विद्यालय एवं ओलम्पियाड परीक्षाओं की बेहतर तैयारी",
+    heroSubtitle3: "विस्तृत अध्ययन संसाधनों के साथ परीक्षाओं में उत्कृष्ट प्रदर्शन करें।",
+    searchPlaceholder: "शीर्षक, कक्षा, विषय या पाठ के आधार पर खोजें...",
+    browseMaterials: "सामग्री देखें",
+    exploreClasses: "कक्षाएं देखें",
+    
+    // Classes
+    studyMaterialsByClass: "कक्षा अनुसार अध्ययन सामग्री",
+    classesSubtitle: "विषय, पुस्तकें और अभ्यास पत्र देखने के लिए अपनी कक्षा चुनें",
+    class: "कक्षा",
+    materialsCount: "सामग्री",
+    explore: "खोजें",
+    back: "वापस",
+    
+    // Subjects
+    selectSubject: "विषय चुनें",
+    allSubjects: "सभी विषय",
+    hindi: "हिन्दी",
+    english: "अंग्रेजी",
+    math: "गणित",
+    twau: "TWAU (टी.डब्ल्यू.ए.यू.)",
+    mathematics: "गणित",
+    science: "विज्ञान",
+    odia: "ओड़िआ",
+    socialScience: "सामाजिक विज्ञान",
+    computer: "कंप्यूटर",
+    generalKnowledge: "सामान्य ज्ञान",
+    reasoning: "तर्कशक्ति (रीजनिंग)",
+    physics: "भौतिक विज्ञान",
+    chemistry: "रसायन विज्ञान",
+    biology: "जीव विज्ञान",
+    other: "अन्य",
+    
+    // Material Types
+    selectMaterialType: "सामग्री का प्रकार चुनें",
+    ncertBook: "एनसीईआरटी पुस्तक",
+    studyNotes: "अध्ययन नोट्स",
+    chapterNotes: "अध्याय नोट्स",
+    questionPapers: "प्रश्न पत्र",
+    previousYearPapers: "विगत वर्षों के प्रश्न पत्र",
+    modelPapers: "मॉडल पेपर्स",
+    practicePapers: "अभ्यास पत्र",
+    samplePapers: "नमूना पत्र",
+    mockTests: "मॉक टेस्ट",
+    worksheets: "कार्यपत्रक (वर्कशीट)",
+    answerKeys: "उत्तर कुंजी",
+    solutions: "समाधान",
+    revisionNotes: "पुनरीक्षण नोट्स",
+    importantQuestions: "महत्वपूर्ण प्रश्न",
+    syllabus: "पाठ्यक्रम",
+    
+    // Material Files & Details
+    viewDownload: "सामग्री देखें / डाउनलोड करें",
+    viewOnline: "गूगल ड्राइव में देखें",
+    downloads: "डाउनलोड्स",
+    views: "देखा गया",
+    academicYear: "शैक्षणिक वर्ष",
+    examType: "परीक्षा प्रकार",
+    chapterNo: "अध्याय संख्या",
+    chapterName: "अध्याय का नाम",
+    examName: "परीक्षा का नाम",
+    publishedDate: "प्रकाशन तिथि",
+    fileDetails: "सामग्री विवरण",
+    noMaterialsFound: "चयनित फिल्टर के लिए कोई अध्ययन सामग्री नहीं मिली।",
+    materialUnavailable: "यह सामग्री वर्तमान में अनुपलब्ध है।",
+    
+    // Video Corner
+    videoCornerTitle: "शैक्षिक वीडियो कॉर्नर",
+    videoCornerSubtitle: "इंटरैक्टिव वीडियो कक्षाएं, अवधारणा स्पष्टीकरण एवं समस्या समाधान",
+    competitiveExams: "प्रतियोगी परीक्षाएं",
+    olympiadExams: "ओलम्पियाड परीक्षाएं",
+    chapters: "अध्याय",
+    videos: "वीडियो",
+    watchVideo: "वीडियो देखें",
+    previousVideo: "पिछला वीडियो",
+    nextVideo: "अगला वीडियो",
+    backToChapter: "अध्याय पर वापस जाएं",
+    relatedVideos: "संबंधित वीडियो",
+    noVideosFound: "अभी तक कोई वीडियो उपलब्ध नहीं है।",
+    
+    // Quizzes
+    interactiveQuizzes: "इंटरैक्टिव क्विज़",
+    quizzesSubtitle: "अध्याय-वार प्रश्नों के साथ अपने ज्ञान का मूल्यांकन करें",
+    startQuiz: "क्विज़ शुरू करें",
+    noQuizzesFound: "कोई क्विज़ नहीं मिला।",
+    topic: "विषय/प्रसंग",
+    
+    // Olympiad
+    olympiadTitle: "ओलम्पियाड परीक्षा की तैयारी",
+    olympiadSubtitle: "गणित, विज्ञान, अंग्रेजी एवं साइबर ओलम्पियाड अध्ययन सामग्री",
+    
+    // Common
+    loading: "लोड हो रहा है...",
+    filterBy: "फ़िल्टर करें",
+    search: "खोजें",
+    resetFilters: "फ़िल्टर हटाएं",
+    retry: "पुनः प्रयास करें",
+    totalMaterials: "कुल सामग्री",
+    footerAboutText: "दक्ष्य शिक्षा छात्रों के लिए निःशुल्क, गुणवत्तापूर्ण एनसीईआरटी पुस्तकें, मॉडल पेपर और वीडियो पाठ प्रदान करने वाली एक समर्पित डिजिटल शिक्षण पहल है।"
+  },
+  
+  or: {
+    // Brand & General
+    brandName: "ଦକ୍ଷ୍ୟ ଶିକ୍ଷା",
+    brandSubtitle: "ଶିକ୍ଷା ଓ ଅଧ୍ୟୟନ ପୋର୍ଟାଲ୍",
+    tagline: "ଭଲରେ ପଢ଼ନ୍ତୁ। ଉନ୍ନତ ଶିଖନ୍ତୁ। ଏକାଠି ଆଗକୁ ବଢ଼ନ୍ତୁ।",
+    allRightsReserved: "ସର୍ବସ୍ୱତ୍ୱ ସଂରକ୍ଷିତ।",
+    
+    // Top Bar
+    dateToday: "ଆଜି",
+    language: "ଭାଷା",
+    theme: "ଥିମ୍",
+    lightMode: "ଲାଇଟ୍",
+    darkMode: "ଡାର୍କ",
+    
+    // Navigation
+    home: "ମୂଳପୃଷ୍ଠା",
+    classes: "ଶ୍ରେଣୀ",
+    studyMaterials: "ପାଠ୍ୟ ଉପକରଣ",
+    videoCorner: "ଭିଡିଓ କର୍ଣ୍ଣର",
+    quiz: "ପ୍ରଶ୍ନୋତ୍ତରୀ",
+    olympiad: "ଓଲିମ୍ପିଆଡ୍",
+    subjects: "ବିଷୟସମୂହ",
+    about: "ଆମ ବିଷୟରେ",
+    contact: "ଯୋଗାଯୋଗ",
+    adminLogin: "ଆଡମିନ୍ ଲଗଇନ୍",
+    adminDashboard: "ଆଡମିନ୍ ପୋର୍ଟାଲ୍",
+    returnToWebsite: "ୱେବସାଇଟ୍ କୁ ଫେରନ୍ତୁ",
+    logout: "ଲଗଆଉଟ୍",
+    
+    // Hero
+    heroTitle1: "ଭଲରେ ପଢ଼ନ୍ତୁ। ଉନ୍ନତ ଶିଖନ୍ତୁ। ଏକାଠି ଆଗକୁ ବଢ଼ନ୍ତୁ।",
+    heroSubtitle1: "ଏନସିଇଆରଟି ପୁସ୍ତକ, ଅଧ୍ୟାୟ ସମାଧାନ, ପ୍ରଶ୍ନପତ୍ର ଏବଂ ଇଣ୍ଟରାକ୍ଟିଭ୍ ପାଠ୍ୟ ଉପକରଣ ପାଆନ୍ତୁ।",
+    heroTitle2: "ପ୍ରଥମରୁ ଦଶମ ଶ୍ରେଣୀ ପର୍ଯ୍ୟନ୍ତ ସମ୍ପୂର୍ଣ୍ଣ ଅଧ୍ୟୟନ ସାମଗ୍ରୀ",
+    heroSubtitle2: "ପାଠ୍ୟକ୍ରମ ଅନୁସାରେ ନୋଟ୍ସ, ମଡେଲ୍ ପେପର, ଅଭ୍ୟାସ ପତ୍ର ଏବଂ ଭିଡିଓ ପାଠ।",
+    heroTitle3: "ବିଦ୍ୟାଳୟ ଓ ଓଲିମ୍ପିଆଡ୍ ପରୀକ୍ଷା ପାଇଁ ଉତ୍ତମ ପ୍ରସ୍ତୁତି",
+    heroSubtitle3: "ବିଶେଷ ପ୍ରସ୍ତୁତି ଉପକରଣ ସହିତ ସମସ୍ତ ପରୀକ୍ଷାରେ ଉତ୍କୃଷ୍ଟ ଫଳାଫଳ ହାସଲ କରନ୍ତୁ।",
+    searchPlaceholder: "ଶୀର୍ଷକ, ଶ୍ରେଣୀ, ବିଷୟ ବା ପାଠ ଅନୁଯାୟୀ ଖୋଜନ୍ତୁ...",
+    browseMaterials: "ପାଠ୍ୟସାମଗ୍ରୀ ଦେଖନ୍ତୁ",
+    exploreClasses: "ଶ୍ରେଣୀ ଦେଖନ୍ତୁ",
+    
+    // Classes
+    studyMaterialsByClass: "ଶ୍ରେଣୀ ଅନୁଯାୟୀ ପାଠ୍ୟସାମଗ୍ରୀ",
+    classesSubtitle: "ବିଷୟ, ପୁସ୍ତକ ଏବଂ ଅଭ୍ୟାସ ପତ୍ର ପାଇଁ ଆପଣଙ୍କ ଶ୍ରେଣୀ ବାଛନ୍ତୁ",
+    class: "ଶ୍ରେଣୀ",
+    materialsCount: "ଉପକରଣ",
+    explore: "ଦେଖନ୍ତୁ",
+    back: "ପଛକୁ ଯାଆନ୍ତୁ",
+    
+    // Subjects
+    selectSubject: "ବିଷୟ ବାଛନ୍ତୁ",
+    allSubjects: "ସମସ୍ତ ବିଷୟ",
+    hindi: "ହିନ୍ଦୀ",
+    english: "ଇଂରାଜୀ",
+    math: "ଗଣିତ",
+    twau: "ଟି.ଡବ୍ଲୁ.ଏ.ୟୁ (TWAU)",
+    mathematics: "ଗଣିତ",
+    science: "ବିଜ୍ଞାନ",
+    odia: "ଓଡ଼ିଆ",
+    socialScience: "ସାମାଜିକ ବିଜ୍ଞାନ",
+    computer: "କମ୍ପ୍ୟୁଟର",
+    generalKnowledge: "ସାଧାରଣ ଜ୍ଞାନ",
+    reasoning: "ତର୍କଶକ୍ତି (Reasoning)",
+    physics: "ପଦାର୍ଥ ବିଜ୍ଞାନ",
+    chemistry: "ରସାୟନ ବିଜ୍ଞାନ",
+    biology: "ଜୀବ ବିଜ୍ଞାନ",
+    other: "ଅନ୍ୟାନ୍ୟ",
+    
+    // Material Types
+    selectMaterialType: "ଉପକରଣ ପ୍ରକାର ବାଛନ୍ତୁ",
+    ncertBook: "ଏନସିଇଆରଟି ବହି (NCERT Book)",
+    studyNotes: "ଅଧ୍ୟୟନ ନୋଟ୍ସ",
+    chapterNotes: "ଅଧ୍ୟାୟ ନୋଟ୍ସ",
+    questionPapers: "ପ୍ରଶ୍ନପତ୍ର",
+    previousYearPapers: "ପୂର୍ବ ବର୍ଷର ପ୍ରଶ୍ନପତ୍ର",
+    modelPapers: "ମଡେଲ୍ ପେପର",
+    practicePapers: "ଅଭ୍ୟାସ ପତ୍ର",
+    samplePapers: "ନମୁନା ପତ୍ର",
+    mockTests: "ମକ୍ ଟେଷ୍ଟ",
+    worksheets: "ୱାର୍କସିଟ୍ (Worksheet)",
+    answerKeys: "ଉତ୍ତର ତାଲିକା",
+    solutions: "ସମାଧାନ",
+    revisionNotes: "ପୁନରାବୃତ୍ତି ନୋଟ୍ସ",
+    importantQuestions: "ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ପ୍ରଶ୍ନ",
+    syllabus: "ପାଠ୍ୟଖସଡ଼ା (Syllabus)",
+    
+    // Material Files & Details
+    viewDownload: "ସାମଗ୍ରୀ ଦେଖନ୍ତୁ / ଡାଉନଲୋଡ୍ କରନ୍ତୁ",
+    viewOnline: "ଗୁଗଲ ଡ୍ରାଇଭ୍ ରେ ଦେଖନ୍ତୁ",
+    downloads: "ଡାଉନଲୋଡ୍",
+    views: "ଦେଖାଯାଇଛି",
+    academicYear: "ଶିକ୍ଷା ବର୍ଷ",
+    examType: "ପରୀକ୍ଷା ପ୍ରକାର",
+    chapterNo: "ଅଧ୍ୟାୟ ନଂ",
+    chapterName: "ଅଧ୍ୟାୟ ନାମ",
+    examName: "ପରୀକ୍ଷା ନାମ",
+    publishedDate: "ପ୍ରକାଶନ ତାରିଖ",
+    fileDetails: "ସାମଗ୍ରୀ ବିବରଣୀ",
+    noMaterialsFound: "ଆପଣଙ୍କ ଚୟନ ଅନୁସାରେ କୌଣସି ପାଠ୍ୟସାମଗ୍ରୀ ମିଳିଲା ନାହିଁ।",
+    materialUnavailable: "ଏହି ସାମଗ୍ରୀ ବର୍ତ୍ତମାନ ଉପଲବ୍ଧ ନାହିଁ।",
+    
+    // Video Corner
+    videoCornerTitle: "ଭିଡିଓ କର୍ଣ୍ଣର",
+    videoCornerSubtitle: "ଭିଡିଓ ପାଠ, ଧାରଣା ବୁଝିବା ଏବଂ ସମସ୍ୟା ସମାଧାନ",
+    competitiveExams: "ପ୍ରତିଯୋଗିତାମୂଳକ ପରୀକ୍ଷା",
+    olympiadExams: "ଓଲିମ୍ପିଆଡ୍ ପରୀକ୍ଷା",
+    chapters: "ଅଧ୍ୟାୟ",
+    videos: "ଭିଡିଓ",
+    watchVideo: "ଭିଡିଓ ଦେଖନ୍ତୁ",
+    previousVideo: "ପୂର୍ବ ଭିଡିଓ",
+    nextVideo: "ପରବର୍ତ୍ତୀ ଭିଡିଓ",
+    backToChapter: "ଅଧ୍ୟାୟକୁ ଫେରନ୍ତୁ",
+    relatedVideos: "ସମ୍ପର୍କିତ ଭିଡିଓ",
+    noVideosFound: "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଭିଡିଓ ଉପଲବ୍ଧ ନାହିଁ।",
+    
+    // Quizzes
+    interactiveQuizzes: "ଇଣ୍ଟରାକ୍ଟିଭ୍ ପ୍ରଶ୍ନୋତ୍ତରୀ",
+    quizzesSubtitle: "ଅଧ୍ୟାୟ ଅନୁଯାୟୀ ପ୍ରଶ୍ନୋତ୍ତରୀ ସହିତ ଆପଣଙ୍କ ଜ୍ଞାନ ପରୀକ୍ଷା କରନ୍ତୁ",
+    startQuiz: "କ୍ୱିଜ୍ ଆରମ୍ଭ କରନ୍ତୁ",
+    noQuizzesFound: "କୌଣସି କ୍ୱିଜ୍ ମିଳିଲା ନାହିଁ।",
+    topic: "ପ୍ରସଙ୍ଗ",
+    
+    // Olympiad
+    olympiadTitle: "ଓଲିମ୍ପିଆଡ୍ ପରୀକ୍ଷା ପ୍ରସ୍ତୁତି",
+    olympiadSubtitle: "ଗଣିତ, ବିଜ୍ଞାନ, ଇଂରାଜୀ ଓ କମ୍ପ୍ୟୁଟର ଓଲିମ୍ପିଆଡ୍ ସାମଗ୍ରୀ",
+    
+    // Common
+    loading: "ଲୋଡ୍ ହେଉଛି...",
+    filterBy: "ଫିଲ୍ଟର୍ କରନ୍ତୁ",
+    search: "ଖୋଜନ୍ତୁ",
+    resetFilters: "ଫିଲ୍ଟର୍ ହଟାନ୍ତୁ",
+    retry: "ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ",
+    totalMaterials: "ମୋଟ ସାମଗ୍ରୀ",
+    footerAboutText: "ଦକ୍ଷ୍ୟ ଶିକ୍ଷା ହେଉଛି ଛାତ୍ରଛାତ୍ରୀମାନଙ୍କ ପାଇଁ ମାଗଣା ଏନସିଇଆରଟି ବହି, ମଡେଲ୍ ପ୍ରଶ୍ନପତ୍ର ଏବଂ ଭିଡିଓ ପାଠ୍ୟସାମଗ୍ରୀ ଯୋଗାଉଥିବା ଏକ ବିଶ୍ୱସ୍ତ ଡିଜିଟାଲ୍ ଶିକ୍ଷା ପଦକ୍ଷେପ।"
+  }
+};
