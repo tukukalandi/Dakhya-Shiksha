@@ -14,7 +14,7 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { StudyMaterial } from '../types';
-import { fetchStudyMaterials, incrementMaterialCounter } from '../lib/firebase';
+import { fetchStudyMaterials, incrementMaterialCounter, subscribeMaterialsUpdate } from '../lib/firebase';
 import { 
   normalizeClass, 
   normalizeSubject, 
@@ -45,8 +45,17 @@ export const StudyMaterialsPage: React.FC = () => {
 
   useEffect(() => {
     fetchStudyMaterials()
-      .then(data => setMaterials(data))
-      .finally(() => setLoading(false));
+      .then(data => {
+        setMaterials(data);
+        setLoading(false);
+      });
+
+    const unsubscribe = subscribeMaterialsUpdate((updated) => {
+      setMaterials(updated);
+      setLoading(false);
+    });
+
+    return unsubscribe;
   }, []);
 
   const updateParam = (key: string, value: string) => {

@@ -91,6 +91,15 @@ export const MaterialDetailsPage: React.FC = () => {
 
   const handleDownloadClick = () => {
     incrementMaterialCounter(material.id, 'download');
+    if (material.fileDataUrl || (driveUrl && (driveUrl.startsWith('data:') || driveUrl.startsWith('blob:')))) {
+      const link = document.createElement('a');
+      link.href = material.fileDataUrl || driveUrl;
+      link.download = material.fileName || `${material.title}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    }
     if (driveUrl) {
       window.open(driveUrl, '_blank', 'noopener,noreferrer');
     }
