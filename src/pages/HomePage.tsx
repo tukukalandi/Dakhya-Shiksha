@@ -15,8 +15,9 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 import { HeroSlider } from '../components/home/HeroSlider';
 import { BrowseByClassSection } from '../components/home/BrowseByClassSection';
+import { RecentMaterialsSection } from '../components/home/RecentMaterialsSection';
 import { StudyMaterial, Video, Quiz } from '../types';
-import { fetchStudyMaterials, fetchVideos, fetchQuizzes } from '../lib/firebase';
+import { fetchStudyMaterials, fetchVideos, fetchQuizzes, subscribeMaterialsUpdate } from '../lib/firebase';
 import { createSlug } from '../lib/utils';
 
 export const HomePage: React.FC = () => {
@@ -34,6 +35,12 @@ export const HomePage: React.FC = () => {
       setQuizzes(qzs);
       setLoading(false);
     });
+
+    const unsubscribe = subscribeMaterialsUpdate((updated) => {
+      setMaterials(updated);
+    });
+
+    return unsubscribe;
   }, []);
 
   return (
@@ -85,7 +92,10 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. Video Corner Highlight */}
+      {/* 4. Latest Uploaded Study Materials Cards */}
+      <RecentMaterialsSection materials={materials} />
+
+      {/* 5. Video Corner Highlight */}
       <section className="py-14 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
           <div>

@@ -33,8 +33,17 @@ export function normalizeSubject(value?: string | null): string {
   if (lower === 'odia' || lower === 'oriya') {
     return 'Odia';
   }
-  if (lower === 'twau') {
+  if (lower === 'twau' || lower === 'evs' || lower === 'environmental studies' || lower === 'the world around us') {
     return 'TWAU';
+  }
+  if (lower === 'sst' || lower === 'social science' || lower === 'social studies') {
+    return 'Social Science';
+  }
+  if (lower === 'computer' || lower === 'cs' || lower === 'computer science' || lower === 'it') {
+    return 'Computer';
+  }
+  if (lower === 'general knowledge' || lower === 'gk') {
+    return 'General Knowledge';
   }
   if (lower === 'all' || lower === 'all subjects') {
     return 'All Subjects';

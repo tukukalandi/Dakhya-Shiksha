@@ -14,6 +14,8 @@ export interface StudyMaterial {
   academicYear?: string; // e.g. "2025-2026", "2026-2027"
   language?: string; // "English", "Hindi", "Odia", "Bilingual"
   fileName?: string;
+  fileSize?: string;
+  fileDataUrl?: string;
   googleDriveUrl: string;
   googleDriveFileId?: string;
   thumbnailUrl?: string;

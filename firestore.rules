@@ -25,18 +25,18 @@ service cloud.firestore {
     }
 
     match /studyMaterials/{materialId} {
-      allow read: if (resource != null && resource.data.isPublished == true) || isAdmin();
+      allow read: if true;
       allow create, delete: if isAdmin();
-      allow update: if isAdmin() || (resource != null && resource.data.isPublished == true && isIncrementOnly());
+      allow update: if isAdmin() || (resource != null && isIncrementOnly());
     }
 
     match /videos/{videoId} {
-      allow read: if (resource != null && (resource.data.status == 'published' || resource.data.status == 'active')) || isAdmin();
+      allow read: if true;
       allow write: if isAdmin();
     }
 
     match /quizzes/{quizId} {
-      allow read: if (resource != null && resource.data.isPublished == true) || isAdmin();
+      allow read: if true;
       allow write: if isAdmin();
     }
 
