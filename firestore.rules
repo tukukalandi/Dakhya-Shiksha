@@ -9,7 +9,6 @@ service cloud.firestore {
     function isAdmin() {
       return isSignedIn() && (
         request.auth.token.email == 'tukukalandi@gmail.com' ||
-        (request.auth.token.email != null && request.auth.token.email.lower() == 'tukukalandi@gmail.com') ||
         exists(/databases/$(database)/documents/admins/$(request.auth.uid))
       );
     }
@@ -26,19 +25,19 @@ service cloud.firestore {
     }
 
     match /studyMaterials/{materialId} {
-      allow read: if true;
-      allow create, delete: if isAdmin() || isSignedIn();
-      allow update: if isAdmin() || isSignedIn() || isIncrementOnly();
+      allow read: if (resource != null && resource.data.isPublished == true) || isAdmin();
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() || (resource != null && resource.data.isPublished == true && isIncrementOnly());
     }
 
     match /videos/{videoId} {
-      allow read: if true;
-      allow write: if isAdmin() || isSignedIn();
+      allow read: if (resource != null && (resource.data.status == 'published' || resource.data.status == 'active')) || isAdmin();
+      allow write: if isAdmin();
     }
 
     match /quizzes/{quizId} {
-      allow read: if true;
-      allow write: if isAdmin() || isSignedIn();
+      allow read: if (resource != null && resource.data.isPublished == true) || isAdmin();
+      allow write: if isAdmin();
     }
 
     match /classes/{id} {

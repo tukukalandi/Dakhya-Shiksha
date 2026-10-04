@@ -138,10 +138,6 @@ export function extractDriveFileId(url?: string): string {
 }
 
 export function getDrivePreviewUrl(url?: string, fileId?: string): string {
-  if (!url && !fileId) return '';
-  if (url && (url.startsWith('data:') || url.startsWith('blob:'))) {
-    return url;
-  }
   const id = fileId || extractDriveFileId(url);
   if (id) {
     return `https://drive.google.com/file/d/${id}/preview`;

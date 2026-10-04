@@ -18,7 +18,7 @@ import firebaseConfig from '../../firebase-applet-config.json';
 import { StudyMaterial, Video, Quiz, AdminUser } from '../types';
 
 export const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app, (firebaseConfig as any).firestoreDatabaseId);
+export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
 export const auth = getAuth(app);
 
 // Test connection on boot per Skill requirement
@@ -87,65 +87,17 @@ export function isUserAdmin(email?: string | null): boolean {
   return email.toLowerCase().trim() === PRIMARY_ADMIN_EMAIL.toLowerCase();
 }
 
-export const WORKSPACE_DRIVE_SCOPES = [
-  'https://www.googleapis.com/auth/drive.file'
-];
-
-let cachedDriveAccessToken: string | null = null;
-
-export const googleAuthProvider = new GoogleAuthProvider();
-WORKSPACE_DRIVE_SCOPES.forEach(scope => googleAuthProvider.addScope(scope));
-
 export async function loginWithGoogle() {
-  const result = await signInWithPopup(auth, googleAuthProvider);
-  const credential = GoogleAuthProvider.credentialFromResult(result);
-  if (credential?.accessToken) {
-    cachedDriveAccessToken = credential.accessToken;
-  }
-  return result;
-}
-
-export function getCachedDriveAccessToken(): string | null {
-  return cachedDriveAccessToken;
-}
-
-export function setCachedDriveAccessToken(token: string | null) {
-  cachedDriveAccessToken = token;
+  const provider = new GoogleAuthProvider();
+  return signInWithPopup(auth, provider);
 }
 
 export async function logoutUser() {
-  cachedDriveAccessToken = null;
   return fbSignOut(auth);
 }
 
 // Initial demo seed datasets to satisfy Requirement 46
 export const INITIAL_DEMO_MATERIALS: StudyMaterial[] = [
-  {
-    id: 'mat-arjya-kumar-sahoo-class4b-mdp',
-    code: 'MAT-C4-MDP-HIN-01',
-    title: 'Arjya Kumar Sahoo Class 4B Travel MDP Hindi',
-    description: 'Class 4B Multidisciplinary Project (MDP) Hindi - Travel & Journey Study Material, worksheets, and project submission file.',
-    classLevel: 'Class 4',
-    subject: 'Hindi',
-    examType: 'School Examination',
-    examName: 'Term Assessment / MDP Project',
-    materialType: 'MDP',
-    academicYear: '2025-2026',
-    language: 'Hindi',
-    fileName: 'Arjya_Kumar_Sahoo_Class_4B_Travel_MDP_Hindi.pdf',
-    fileSize: '415.9 KB',
-    googleDriveUrl: 'https://drive.google.com/file/d/1TyuS2cauhBblj1gNtYWDGGSb7RaH_gkX/view',
-    googleDriveFileId: '1TyuS2cauhBblj1gNtYWDGGSb7RaH_gkX',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
-    uploadedBy: 'tukukalandi@gmail.com',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    isPublished: true,
-    downloadCount: 15,
-    viewCount: 68,
-    tags: ['Class 4', 'Hindi', 'MDP', 'Travel', 'Study Material', 'Project'],
-    isDemo: false
-  },
   {
     id: 'demo-mat-1',
     code: 'MAT-C5-MATH-01',
@@ -955,126 +907,22 @@ export const INITIAL_DEMO_QUIZZES: Quiz[] = [
   }
 ];
 
-// In-memory / local cache to guarantee instant 0ms rendering and zero lost files
-const LOCAL_STORAGE_MATERIALS_KEY = 'dakshya_shiksha_materials_v6';
-const USER_UPLOADS_KEY = 'dakshya_user_uploaded_materials_permanent';
+// In-memory / local cache to guarantee fast rendering and zero blank screens
+const LOCAL_STORAGE_MATERIALS_KEY = 'dakshya_shiksha_materials_v5';
 const LOCAL_STORAGE_VIDEOS_KEY = 'dakshya_shiksha_videos_v1';
 const LOCAL_STORAGE_QUIZZES_KEY = 'dakshya_shiksha_quizzes_v1';
 
-let cachedMaterials: StudyMaterial[] | null = null;
-const materialListeners = new Set<(materials: StudyMaterial[]) => void>();
-
-export function subscribeMaterialsUpdate(callback: (materials: StudyMaterial[]) => void): () => void {
-  materialListeners.add(callback);
-  return () => {
-    materialListeners.delete(callback);
-  };
-}
-
-function notifyMaterialsListeners(updatedList: StudyMaterial[]) {
-  materialListeners.forEach(cb => {
-    try {
-      cb(updatedList);
-    } catch (e) {
-      console.warn('Listener error:', e);
-    }
-  });
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('dakshya_materials_updated', { detail: updatedList }));
-  }
-}
-
-/**
- * Recovers all previously uploaded materials across any localStorage version keys
- * so user files from prior sessions are never lost.
- */
-function recoverAllPreviousUploads(): StudyMaterial[] {
-  if (typeof window === 'undefined') return [];
-  const recoveredMap = new Map<string, StudyMaterial>();
-
-  const keysToScan = [
-    USER_UPLOADS_KEY,
-    LOCAL_STORAGE_MATERIALS_KEY,
-    'dakshya_shiksha_materials_v5',
-    'dakshya_shiksha_materials_v4',
-    'dakshya_shiksha_materials_v3',
-    'dakshya_shiksha_materials_v2',
-    'dakshya_shiksha_materials_v1',
-    'dakshya_shiksha_materials',
-    'dakshya_materials'
-  ];
-
-  for (const k of keysToScan) {
-    try {
-      const raw = localStorage.getItem(k);
-      if (!raw) continue;
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) {
-        for (const item of parsed) {
-          if (item && item.id) {
-            // If it's a user upload or contains user-specified file metadata
-            if (!item.isDemo || item.fileName || item.id.startsWith('mat-') || item.googleDriveFileId) {
-              recoveredMap.set(item.id, item);
-            }
-          }
-        }
-      }
-    } catch {
-      // ignore JSON parse error on legacy keys
-    }
-  }
-
-  const recoveredList = Array.from(recoveredMap.values());
-  if (recoveredList.length > 0) {
-    try {
-      localStorage.setItem(USER_UPLOADS_KEY, JSON.stringify(recoveredList));
-    } catch {
-      // ignore
-    }
-  }
-  return recoveredList;
-}
-
-/**
- * Builds the unified material list (Baseline + Stored User Uploads) instantly without network wait.
- */
-function getConsolidatedMaterials(): StudyMaterial[] {
-  const map = new Map<string, StudyMaterial>();
-
-  // 1. Seed with baseline initial materials
-  for (const item of INITIAL_DEMO_MATERIALS) {
-    map.set(item.id, item);
-  }
-
-  // 2. Overlay all recovered and stored user uploads
-  const userUploads = recoverAllPreviousUploads();
-  for (const item of userUploads) {
-    map.set(item.id, item);
-  }
-
-  // 3. Overlay anything currently in active cache key
+function getStoredOrDemo<T>(key: string, initial: T[]): T[] {
   try {
-    const active = localStorage.getItem(LOCAL_STORAGE_MATERIALS_KEY);
-    if (active) {
-      const parsed = JSON.parse(active);
-      if (Array.isArray(parsed)) {
-        for (const item of parsed) {
-          if (item && item.id) {
-            map.set(item.id, item);
-          }
-        }
-      }
+    const raw = localStorage.getItem(key);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
     }
   } catch {
-    // ignore
+    // fallback
   }
-
-  // Sort with newest user uploads first
-  const list = Array.from(map.values()).sort((a, b) => {
-    return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
-  });
-
-  return list;
+  return initial;
 }
 
 function saveToLocalStorage<T>(key: string, data: T[]) {
@@ -1085,70 +933,23 @@ function saveToLocalStorage<T>(key: string, data: T[]) {
   }
 }
 
-/**
- * Instant 0ms fetch for Study Materials with background Firestore sync.
- */
+// Data fetchers with dual sync (Firestore + Local fallback)
 export async function fetchStudyMaterials(): Promise<StudyMaterial[]> {
-  // If already in memory, return immediately (0ms)
-  if (cachedMaterials && cachedMaterials.length > 0) {
-    triggerBackgroundFirestoreSync();
-    return cachedMaterials;
-  }
-
-  // Immediately resolve from consolidated local storage (0ms)
-  cachedMaterials = getConsolidatedMaterials();
-
-  // Kick off non-blocking background sync with Firestore
-  triggerBackgroundFirestoreSync();
-
-  return cachedMaterials;
-}
-
-/**
- * Background non-blocking sync with Firestore
- */
-let isSyncing = false;
-async function triggerBackgroundFirestoreSync() {
-  if (isSyncing) return;
-  isSyncing = true;
-
   try {
     const q = collection(db, 'studyMaterials');
-    // 2.5s network timeout so background sync never lags
-    const snapshotPromise = getDocs(q);
-    const timeoutPromise = new Promise<null>((_, reject) => 
-      setTimeout(() => reject(new Error('Sync timeout')), 2500)
-    );
-
-    const snapshot = await Promise.race([snapshotPromise, timeoutPromise]) as any;
-    if (snapshot && !snapshot.empty) {
-      const currentList = cachedMaterials || getConsolidatedMaterials();
-      const map = new Map<string, StudyMaterial>();
-
-      // Keep all local user uploads
-      for (const item of currentList) {
-        map.set(item.id, item);
-      }
-
-      // Merge Firestore documents
-      snapshot.forEach((docSnap: any) => {
-        const docData = { id: docSnap.id, ...docSnap.data() } as StudyMaterial;
-        map.set(docData.id, docData);
+    const snapshot = await getDocs(q);
+    if (!snapshot.empty) {
+      const list: StudyMaterial[] = [];
+      snapshot.forEach(docSnap => {
+        list.push({ id: docSnap.id, ...docSnap.data() } as StudyMaterial);
       });
-
-      const merged = Array.from(map.values()).sort((a, b) => {
-        return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
-      });
-
-      cachedMaterials = merged;
-      saveToLocalStorage(LOCAL_STORAGE_MATERIALS_KEY, merged);
-      notifyMaterialsListeners(merged);
+      saveToLocalStorage(LOCAL_STORAGE_MATERIALS_KEY, list);
+      return list;
     }
-  } catch (err) {
-    // Non-blocking, keep serving cached materials
-  } finally {
-    isSyncing = false;
+  } catch (error) {
+    console.warn('Firestore fetchStudyMaterials falling back to local cache/demo:', error);
   }
+  return getStoredOrDemo(LOCAL_STORAGE_MATERIALS_KEY, INITIAL_DEMO_MATERIALS);
 }
 
 export async function fetchVideos(): Promise<Video[]> {
@@ -1167,19 +968,6 @@ export async function fetchVideos(): Promise<Video[]> {
     console.warn('Firestore fetchVideos falling back to local cache/demo:', error);
   }
   return getStoredOrDemo(LOCAL_STORAGE_VIDEOS_KEY, INITIAL_DEMO_VIDEOS);
-}
-
-function getStoredOrDemo<T>(key: string, initial: T[]): T[] {
-  try {
-    const raw = localStorage.getItem(key);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-    }
-  } catch {
-    // fallback
-  }
-  return initial;
 }
 
 export async function fetchQuizzes(): Promise<Quiz[]> {
@@ -1202,50 +990,23 @@ export async function fetchQuizzes(): Promise<Quiz[]> {
 
 // Material Operations
 export async function saveStudyMaterialDoc(material: StudyMaterial): Promise<void> {
-  // Strip large fileDataUrl to ensure rapid, error-free saves
-  const cleanDoc: Record<string, any> = { ...material };
-  if (cleanDoc.fileDataUrl && cleanDoc.fileDataUrl.length > 50000) {
-    delete cleanDoc.fileDataUrl;
-  }
-
-  // 1. Immediately update in-memory cache and permanent user upload storage (0ms)
-  const current = cachedMaterials || getConsolidatedMaterials();
-  const existingIdx = current.findIndex(m => m.id === material.id);
-  if (existingIdx >= 0) {
-    current[existingIdx] = cleanDoc as StudyMaterial;
-  } else {
-    current.unshift(cleanDoc as StudyMaterial);
-  }
-  cachedMaterials = [...current];
-
-  // Save to permanent user uploads key
-  try {
-    const currentUploads = recoverAllPreviousUploads();
-    const upIdx = currentUploads.findIndex(m => m.id === material.id);
-    if (upIdx >= 0) {
-      currentUploads[upIdx] = cleanDoc as StudyMaterial;
-    } else {
-      currentUploads.unshift(cleanDoc as StudyMaterial);
-    }
-    localStorage.setItem(USER_UPLOADS_KEY, JSON.stringify(currentUploads));
-    localStorage.setItem(LOCAL_STORAGE_MATERIALS_KEY, JSON.stringify(cachedMaterials));
-  } catch {
-    // ignore
-  }
-
-  // Notify all UI listeners immediately
-  notifyMaterialsListeners(cachedMaterials);
-
-  // 2. Asynchronously save to Firestore (with 3s timeout)
+  const path = `studyMaterials/${material.id}`;
   try {
     const docRef = doc(db, 'studyMaterials', material.id);
-    await Promise.race([
-      setDoc(docRef, cleanDoc, { merge: true }),
-      new Promise((_, reject) => setTimeout(() => reject(new Error('Write timeout')), 3000))
-    ]);
+    await setDoc(docRef, material, { merge: true });
   } catch (err) {
-    console.warn('Firestore write warning (saved locally & permanently):', err);
+    handleFirestoreError(err, OperationType.WRITE, path);
   }
+
+  // Update local copy
+  const existing = await fetchStudyMaterials();
+  const index = existing.findIndex(m => m.id === material.id);
+  if (index >= 0) {
+    existing[index] = material;
+  } else {
+    existing.unshift(material);
+  }
+  saveToLocalStorage(LOCAL_STORAGE_MATERIALS_KEY, existing);
 }
 
 export async function deleteStudyMaterialDoc(materialId: string): Promise<void> {

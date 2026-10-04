@@ -16,8 +16,7 @@ import { StudyMaterial } from '../../types';
 import { 
   fetchStudyMaterials, 
   deleteStudyMaterialDoc, 
-  saveStudyMaterialDoc,
-  subscribeMaterialsUpdate
+  saveStudyMaterialDoc 
 } from '../../lib/firebase';
 import { 
   normalizeClass, 
@@ -36,19 +35,18 @@ export const AdminMaterialsPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const pageSize = 10;
 
-  useEffect(() => {
-    // Instant load (0ms from cache)
-    fetchStudyMaterials().then(data => {
+  const loadData = async () => {
+    setLoading(true);
+    try {
+      const data = await fetchStudyMaterials();
       setMaterials(data);
+    } finally {
       setLoading(false);
-    });
+    }
+  };
 
-    const unsubscribe = subscribeMaterialsUpdate((updated) => {
-      setMaterials(updated);
-      setLoading(false);
-    });
-
-    return unsubscribe;
+  useEffect(() => {
+    loadData();
   }, []);
 
   const handleTogglePublish = async (material: StudyMaterial) => {

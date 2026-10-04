@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, BookOpen, Sparkles, ChevronLeft, ChevronRight, GraduationCap, Award, FolderCheck } from 'lucide-react';
+import { Search, BookOpen, Sparkles, ChevronLeft, ChevronRight, GraduationCap, Award } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 export const HeroSlider: React.FC = () => {
@@ -104,25 +104,17 @@ export const HeroSlider: React.FC = () => {
 
         {/* Action Buttons & Navigation */}
         <div className="flex flex-wrap items-center justify-center gap-3">
-          <a
-            href="#all-files-repository"
-            className="px-6 py-2.5 bg-amber-400 hover:bg-amber-300 text-red-950 font-black text-sm rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center space-x-2 cursor-pointer"
-          >
-            <FolderCheck className="w-4 h-4 text-red-900" />
-            <span>Browse All Available Files</span>
-          </a>
-
           <button
             onClick={() => navigate(slide.btnTarget)}
-            className="px-5 py-2.5 bg-red-950/90 hover:bg-red-900 border border-amber-400/50 text-amber-300 font-bold text-sm rounded-lg transition-colors flex items-center space-x-2 cursor-pointer"
+            className="px-6 py-2.5 bg-amber-400 hover:bg-amber-300 text-red-950 font-black text-sm rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center space-x-2 cursor-pointer"
           >
-            <Icon className="w-4 h-4 text-amber-400" />
+            <Icon className="w-4 h-4 text-red-900" />
             <span>{slide.btnLabel}</span>
           </button>
 
           <button
             onClick={() => navigate('/video-corner')}
-            className="px-5 py-2.5 bg-red-950/70 hover:bg-red-900/90 border border-amber-400/30 text-amber-200 font-medium text-sm rounded-lg transition-colors cursor-pointer"
+            className="px-6 py-2.5 bg-red-950/80 hover:bg-red-900 border border-amber-400/40 text-amber-200 font-bold text-sm rounded-lg transition-colors cursor-pointer"
           >
             {t('videoCorner')}
           </button>
